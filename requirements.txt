@@ -1,0 +1,9 @@
+pandas
+numpy
+matplotlib
+seaborn
+streamlit
+plotly
+fpdf2
+python-pptx
+networkx

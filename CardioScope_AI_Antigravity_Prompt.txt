@@ -1,0 +1,395 @@
+# CardioScope AI - Comprehensive Build Prompt for Antigravity
+
+You are a Senior AI Architect, Senior Python Engineer, Data Scientist, and Strategy Consultant.
+
+Your task is to build a complete, modular, production-quality AI decision intelligence system called **CardioScope AI**.
+
+## Project Goal
+
+Build an Explainable AI platform that helps Cipla identify and prioritize future investment opportunities in the Cardiac therapy market.
+
+The system is NOT a chatbot.
+The system is NOT a generic forecasting model.
+
+It is a Decision Intelligence Platform that combines:
+1. Historical market intelligence
+2. External healthcare intelligence
+3. Opportunity scoring
+4. Strategic Right-to-Win evaluation
+5. Explainable recommendations
+
+The code should be modular, object-oriented, documented, and extensible.
+
+--------------------------------------------------
+PROJECT STRUCTURE
+--------------------------------------------------
+
+CardioScope_AI_Ascend2026/
+
+data/
+    raw/
+        Data Set_Ascend Season 4_2026.xlsx
+
+    processed/
+        cardiac_clean.csv
+
+    external/
+        external_signals.xlsx
+
+src/
+    preprocessing.py
+    analysis.py
+    external_intelligence.py
+    opportunity_engine.py
+    recommendation_engine.py
+    scoring_config.py
+    utils.py
+
+outputs/
+    graphs/
+    tables/
+    ppt/
+
+app/
+    streamlit_app.py
+
+main.py
+README.md
+requirements.txt
+
+--------------------------------------------------
+DATASET
+--------------------------------------------------
+
+Primary sheet: Cardiac
+
+Key columns include:
+
+BRANDS
+MANUFACT. DESC
+COMPANY
+COMPANY CLUSTER
+COMPANY DIVISION
+COMPANY SUB DIVISION
+COMPANY India Business Prescription
+INDIAN_MNC
+SUBGROUP
+GROUP
+SUPERGROUP
+ACUTE_CHRONIC
+FINAL NFC
+CARDIAC SEGMENT
+CARDIAC SUB SEGMENTS
+MOLECULE_DESC
+Plain/Combination
+PACK_DESC
+PACK VOLUME
+STRENGTH
+MAT FEB'24
+MAT FEB'25
+MAT FEB'26
+Sales DEC'25
+Sales JAN'26
+Sales FEB'26
+MAT CP FEB'24
+MAT CP FEB'25
+MAT CP FEB'26
+QTY MAT FEB'24
+QTY MAT FEB'25
+QTY MAT FEB'26
+PR_DEC'25
+PR_JAN'26
+PR_FEB'26
+
+--------------------------------------------------
+MODULE RESPONSIBILITIES
+--------------------------------------------------
+
+1. preprocessing.py
+
+Responsibilities:
+
+- Load Excel data
+- Read Cardiac sheet
+- Clean column names safely
+- Handle missing values
+- Remove duplicates
+- Trim text
+- Convert numeric columns
+- Save processed CSV
+
+Should expose:
+
+class DataPreprocessor
+
+Methods:
+
+load_data()
+clean_data()
+validate_data()
+save_processed_data()
+run_pipeline()
+
+--------------------------------------------------
+
+2. analysis.py
+
+Historical Intelligence Engine
+
+Responsibilities:
+
+Calculate
+
+- Market size
+- Market growth
+- Company share
+- Segment share
+- Molecule analysis
+- Manufacturer analysis
+- Quantity analysis
+- Pricing analysis
+- CAGR
+- Competition summary
+
+Generate graphs and summary tables.
+
+Should expose
+
+class HistoricalIntelligence
+
+--------------------------------------------------
+
+3. external_intelligence.py
+
+Read external_signals.xlsx
+
+Generate
+
+Disease Score
+
+Patent Score
+
+Innovation Score
+
+Clinical Guideline Score
+
+Regulatory Score
+
+Normalize all scores to 0-10.
+
+Output
+
+External Intelligence DataFrame
+
+--------------------------------------------------
+
+4. scoring_config.py
+
+Store configurable weights.
+
+Example
+
+SCORING_WEIGHTS = {
+
+"market":0.25,
+
+"growth":0.20,
+
+"competition":0.15,
+
+"future":0.20,
+
+"right_to_win":0.20
+
+}
+
+Must be easy to modify.
+
+--------------------------------------------------
+
+5. opportunity_engine.py
+
+This is the AI engine.
+
+Combine
+
+Historical Intelligence
+
++
+
+External Intelligence
+
+Compute
+
+Market Score
+
+Growth Score
+
+Competition Score
+
+Future Score
+
+Right-to-Win Score
+
+Overall Opportunity Score
+
+Normalize score between 0-100.
+
+Rank opportunities.
+
+Output
+
+Top Opportunity Table
+
+--------------------------------------------------
+
+6. recommendation_engine.py
+
+Explain WHY each opportunity ranked where it did.
+
+No LLM.
+
+Use rule-based explainability.
+
+Example:
+
+Heart Failure ranked first because:
+
+- Strong market growth
+- Increasing disease burden
+- Guideline expansion
+- Moderate competition
+- Strong strategic fit
+
+Generate
+
+Top 5 Opportunities
+
+Top 3 Investment Priorities
+
+Double Down
+
+Build
+
+Partner
+
+Avoid
+
+--------------------------------------------------
+
+7. utils.py
+
+Utility functions
+
+Load file
+
+Save CSV
+
+Save figures
+
+Create folders
+
+Logging
+
+Formatting
+
+--------------------------------------------------
+
+8. streamlit_app.py
+
+Create a simple dashboard.
+
+Sidebar filters:
+
+Company
+
+Segment
+
+Subsegment
+
+Opportunity
+
+Display
+
+KPIs
+
+Opportunity Score
+
+Top Recommendations
+
+Download tables
+
+--------------------------------------------------
+
+9. main.py
+
+Pipeline:
+
+Preprocessing
+
+↓
+
+Historical Intelligence
+
+↓
+
+External Intelligence
+
+↓
+
+Opportunity Engine
+
+↓
+
+Recommendation Engine
+
+↓
+
+Save outputs
+
+--------------------------------------------------
+OUTPUTS
+--------------------------------------------------
+
+Automatically generate:
+
+outputs/graphs
+
+- Market Size
+- Segment Growth
+- Company Share
+- Manufacturer Share
+- Opportunity Matrix
+
+outputs/tables
+
+- segment_summary.csv
+- company_summary.csv
+- opportunity_scores.csv
+
+--------------------------------------------------
+CODING STANDARDS
+--------------------------------------------------
+
+- Python 3.11+
+- Type hints
+- Google-style docstrings
+- OOP
+- Modular code
+- Exception handling
+- Logging
+- Configurable paths
+- Reusable methods
+- No hard-coded values where avoidable
+
+--------------------------------------------------
+IMPORTANT
+--------------------------------------------------
+
+Do NOT use any paid APIs.
+
+Do NOT use OpenAI, Anthropic, Gemini, or external LLM APIs.
+
+Everything must run locally using Python libraries.
+
+The final result should be a maintainable AI Decision Intelligence platform, not just analysis scripts.
