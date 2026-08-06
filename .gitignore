@@ -7,8 +7,4 @@ ENV/
 env/
 .DS_Store
 *.pdf
-outputs/
-data/raw/
-data/processed/
-data/external/
 .streamlit/
