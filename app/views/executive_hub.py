@@ -129,26 +129,26 @@ def render(opp_df, raw_df):
         return 'tag-monitor'
 
     table_html = """
-    <table style="width:100%; text-align:left; border-collapse:collapse; background:white; border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.1);">
-        <tr style="background:#F3F4F6; color:#374151; font-weight:600; font-size:0.85rem; text-transform:uppercase;">
-            <th style="padding:12px 16px;">Rank</th>
-            <th style="padding:12px 16px;">Representative Molecule</th>
-            <th style="padding:12px 16px;">Opportunity Score</th>
-            <th style="padding:12px 16px;">Recommendation</th>
-        </tr>
-    """
+<table style="width:100%; text-align:left; border-collapse:collapse; background:white; border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+    <tr style="background:#F3F4F6; color:#374151; font-weight:600; font-size:0.85rem; text-transform:uppercase;">
+        <th style="padding:12px 16px;">Rank</th>
+        <th style="padding:12px 16px;">Representative Molecule</th>
+        <th style="padding:12px 16px;">Opportunity Score</th>
+        <th style="padding:12px 16px;">Recommendation</th>
+    </tr>
+"""
     for idx, row in top_opps.head(5).iterrows():
         rank = idx + 1
         strat = row.get('Investment Matrix', row['Strategy'])
         tag = get_tag_class(strat)
         table_html += f"""
-        <tr style="border-top:1px solid #E5E7EB;">
-            <td style="padding:12px 16px; font-weight:600; color:#0056A3;">#{rank}</td>
-            <td style="padding:12px 16px; font-weight:500;">{row['MOLECULE_DESC']}</td>
-            <td style="padding:12px 16px;">{row['Opportunity Score']}</td>
-            <td style="padding:12px 16px;"><span class="strat-tag {tag}">{strat}</span></td>
-        </tr>
-        """
+<tr style="border-top:1px solid #E5E7EB;">
+    <td style="padding:12px 16px; font-weight:600; color:#0056A3;">#{rank}</td>
+    <td style="padding:12px 16px; font-weight:500;">{row['MOLECULE_DESC']}</td>
+    <td style="padding:12px 16px;">{row['Opportunity Score']}</td>
+    <td style="padding:12px 16px;"><span class="strat-tag {tag}">{strat}</span></td>
+</tr>
+"""
     table_html += "</table>"
     st.markdown(table_html, unsafe_allow_html=True)
 
@@ -165,12 +165,12 @@ def render(opp_df, raw_df):
             except: pass
             
             st.markdown(f"""
-            <div style="background:white; border:1px solid #E5E7EB; border-left:4px solid #0056A3; padding:16px; margin-bottom:12px; border-radius:4px;">
-                <div style="font-weight:700; color:#111827; margin-bottom:4px;">{row['MOLECULE_DESC']}</div>
-                <div style="font-size:0.9rem; color:#4B5563; margin-bottom:8px;"><b>Reason:</b> {reason}</div>
-                <div style="font-size:0.85rem;"><b>Recommended Action:</b> <span style="color:#0056A3; font-weight:600;">{row.get('Investment Matrix', row['Strategy'])}</span></div>
-            </div>
-            """, unsafe_allow_html=True)
+<div style="background:white; border:1px solid #E5E7EB; border-left:4px solid #0056A3; padding:16px; margin-bottom:12px; border-radius:4px;">
+    <div style="font-weight:700; color:#111827; margin-bottom:4px;">{row['MOLECULE_DESC']}</div>
+    <div style="font-size:0.9rem; color:#4B5563; margin-bottom:8px;"><b>Reason:</b> {reason}</div>
+    <div style="font-size:0.85rem;"><b>Recommended Action:</b> <span style="color:#0056A3; font-weight:600;">{row.get('Investment Matrix', row['Strategy'])}</span></div>
+</div>
+""", unsafe_allow_html=True)
 
     with c_right:
         st.markdown('<div class="section-header" style="margin-top:24px;">4. AI Trade-off Analysis</div>', unsafe_allow_html=True)
@@ -201,28 +201,28 @@ def render(opp_df, raw_df):
         st.markdown("**Right-to-Win Breakdown**")
         for idx, row in top_opps.head(3).iterrows():
             st.markdown(f"""
-            <div class="glass-card" style="padding:16px; margin-bottom:12px;">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <b style="color:#0056A3;">{row['MOLECULE_DESC']}</b>
-                    <span style="background:#E0E7FF; color:#4338CA; padding:2px 8px; border-radius:12px; font-weight:bold; font-size:0.8rem;">Score: {row['Right to Win Score']}/10</span>
-                </div>
-                <div style="font-size:0.85rem; color:#4B5563; margin-top:8px;">Current Cipla Market Share indicates strategic fitness.</div>
-            </div>
-            """, unsafe_allow_html=True)
+<div class="glass-card" style="padding:16px; margin-bottom:12px;">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <b style="color:#0056A3;">{row['MOLECULE_DESC']}</b>
+        <span style="background:#E0E7FF; color:#4338CA; padding:2px 8px; border-radius:12px; font-weight:bold; font-size:0.8rem;">Score: {row['Right to Win Score']}/10</span>
+    </div>
+    <div style="font-size:0.85rem; color:#4B5563; margin-top:8px;">Current Cipla Market Share indicates strategic fitness.</div>
+</div>
+""", unsafe_allow_html=True)
             
     with c_comp:
         st.markdown("**Competitive Landscape**")
         for idx, row in top_opps.head(3).iterrows():
             comp_score = row['Competition Score']
             st.markdown(f"""
-            <div class="glass-card" style="padding:16px; margin-bottom:12px;">
-                <b style="color:#0056A3;">{row['MOLECULE_DESC']}</b>
-                <div style="font-size:0.85rem; margin-top:4px;">
-                    <div><b>Competitor Intensity:</b> {row.get('Num Competitors', 'N/A')} active players</div>
-                    <div><b>Market Defensibility (Score):</b> {comp_score:.1f}/10</div>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+<div class="glass-card" style="padding:16px; margin-bottom:12px;">
+    <b style="color:#0056A3;">{row['MOLECULE_DESC']}</b>
+    <div style="font-size:0.85rem; margin-top:4px;">
+        <div><b>Competitor Intensity:</b> {row.get('Num Competitors', 'N/A')} active players</div>
+        <div><b>Market Defensibility (Score):</b> {comp_score:.1f}/10</div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
     # --- 7. Underpenetrated Opportunities ---
     st.markdown('<div class="section-header">7. Underpenetrated Opportunities (Blind Spots)</div>', unsafe_allow_html=True)
