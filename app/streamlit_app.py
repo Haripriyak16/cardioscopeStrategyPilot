@@ -149,10 +149,11 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-from app.views import home, market, competition, external, copilot, explorer, simulator, report, comparison, knowledge_graph
+from app.views import home, market, competition, external, copilot, explorer, simulator, report, comparison, knowledge_graph, executive_hub
 
 PAGES = {
     "Home": home,
+    "Executive Intelligence Hub": executive_hub,
     "AI Strategy Copilot": copilot,
     "Market Intelligence": market,
     "Competition Intelligence": competition,
@@ -167,6 +168,7 @@ PAGES = {
 # (full page name, short nav label)
 NAV_ITEMS = [
     ("Home", "Home"),
+    ("Executive Intelligence Hub", "Exec Hub"),
     ("AI Strategy Copilot", "Copilot"),
     ("Market Intelligence", "Market"),
     ("Competition Intelligence", "Competition"),
