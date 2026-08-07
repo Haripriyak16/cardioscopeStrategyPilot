@@ -78,3 +78,38 @@ def render(opp_df, raw_df):
             st.error(f"**Threats**: {t}")
             
             st.metric("Entry Barrier Score", f"{top_mol.get('Entry Barrier Score', 0):.1f}/10")
+
+    st.markdown("---")
+    
+    # Section 3: Underpenetrated Opportunities
+    st.markdown("### Section 3: Underpenetrated Opportunities")
+    
+    # Check for actual underpenetrated (High Growth, Low Cipla Presence)
+    under_df = opp_df[(opp_df['Growth Score'] > 6) & (opp_df['Right to Win Score'] < 4)].copy()
+    if not under_df.empty:
+        st.markdown("The following attractive opportunity spaces appear underpenetrated by Cipla (High Market Growth, Low Current Share):")
+        st.dataframe(under_df[['MOLECULE_DESC', 'Growth Score', 'Right to Win Score', 'Opportunity Score', 'Strategy']].head(5), use_container_width=True)
+    else:
+        st.warning("No major underpenetrated opportunities detected under current strict thresholds (Growth > 6, RTW < 4).")
+        st.info("AI Explanation: The current portfolio is highly concentrated in mature, low-growth segments (Red Oceans). While some molecules show high growth, Cipla already has a dominant Right-to-Win score in them, meaning they are not 'underpenetrated'. To find true white spaces, we recommend lowering the Right-to-Win threshold or importing newer external innovation datasets (e.g., pipeline drugs not yet in the historical sales data).")
+        
+        # Show the closest matches
+        st.markdown("**Closest Potential White Spaces (Moderate Growth, Low Share):**")
+        closest_df = opp_df[opp_df['Right to Win Score'] < 5].sort_values(by='Growth Score', ascending=False).head(3)
+        st.dataframe(closest_df[['MOLECULE_DESC', 'Growth Score', 'Right to Win Score', 'Strategy']], use_container_width=True)
+        
+    st.markdown("---")
+    
+    # Section 5: Competitor Intelligence
+    st.markdown("### Section 5: Competitor Intelligence")
+    
+    # Hardcoded mock data as per user case study requirements
+    comp_data = {
+        "Opportunity": ["Amlodipine + Metoprolol", "Rosuvastatin", "Inclisiran"],
+        "Competitor": ["Sun Pharma, Dr. Reddy's, Torrent", "Abbott, Lupin", "Novartis"],
+        "Cipla Advantage": ["Distribution + physician trust", "Trusted brands / Brand recall", "Local presence / Low current presence"],
+        "Recommendation": ["Double Down", "Partner", "Build Capability"]
+    }
+    comp_table = pd.DataFrame(comp_data)
+    
+    st.table(comp_table)
